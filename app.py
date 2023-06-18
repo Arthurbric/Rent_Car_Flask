@@ -1,8 +1,6 @@
 from flask import Flask, render_template , request
 from util import bd
-
 app = Flask(__name__)
-
 @app.route('/')
 def login_form():
   return render_template('login.html')
@@ -43,6 +41,110 @@ def process():
   #
   # result = login_data(user, senha)
   # return result
+
+@app.route('/select_a')
+def a():
+  banco = bd.SQL("root", "art88043101", "test_1")
+  comando = "SELECT DISTINCT modelo, ano, marca FROM automoveis WHERE marca = 'Toyota' ORDER BY ano ASC;"
+  cs = banco.consultar(comando, [])
+  dados = ""
+  for (modelo, ano,marca) in cs:
+      dados += '''
+                  <h3>{}</h3>
+                  <div>
+                      <table>
+                        <tr>
+                          <td style='padding: 30px'>
+                            <p>Modelo : {}</p>
+                            <p>Ano : {} </p>
+                          </td>
+                          <td style='padding: 30px'>
+                             <img src="\static\{}.jpg" width="300px" height="200px">
+                          </td>
+                        </tr>
+                      </table>
+                  </div>
+               '''.format(modelo,modelo ,ano,marca)
+  return render_template('accordion.html', dados = dados)
+
+@app.route('/select_a2')
+def a2():
+  banco = bd.SQL("root", "art88043101", "test_1")
+  comando = """
+  SELECT contato, sigla
+FROM agencia
+WHERE nome LIKE 'A%'
+ORDER BY sigla ASC;
+  """
+  cs = banco.consultar(comando, [])
+  dados = ""
+  for (contato, sigla) in cs:
+      dados += '''
+                  <h3>{}</h3>
+                  <div>
+                      <table>
+                        <tr>
+                          <td style='padding: 30px'>
+                            <p>sigla : {}</p>
+                            <p>contato : {} </p>
+                          </td>
+                        </tr>
+                      </table>
+                  </div>
+               '''.format(contato, sigla,contato)
+  return render_template('accordion.html', dados = dados)
+
+@app.route('/select_a3')
+def a3():
+  banco = bd.SQL("root", "art88043101", "test_1")
+  comando = """
+  SELECT nome, salario
+FROM pessoa_fisica
+WHERE salario > 1000
+ORDER BY salario DESC;
+  """
+  cs = banco.consultar(comando, [])
+  dados = ""
+  for (nome, salario) in cs:
+      dados += '''
+                  <h3>{}</h3>
+                  <div>
+                      <table>
+                        <tr>
+                          <td style='padding: 30px'>
+                            <p>nome : {}</p>
+                            <p>salario : {} </p>
+                          </td>
+                      </table>
+                  </div>
+               '''.format(nome, salario)
+  return render_template('accordion.html', dados = dados)
+
+@app.route('/select_b')
+def b():
+  banco = bd.SQL("root", "art88043101", "test_1")
+  comando = """SELECT pf.Nome AS Nome_Pessoa, ag.Sigla AS Sigla_Agencia
+FROM Pessoa_Fisica pf
+JOIN Contrata c ON pf.CPF = c.fk_Pessoa_Fisica_CPF
+JOIN Agencia ag ON c.fk_Agencia_CNPJ = ag.CNPJ
+ORDER BY pf.Nome;"""
+  cs = banco.consultar(comando, [])
+  dados = ""
+  for (Nome_Pessoa,Sigla_Agencia) in cs:
+      dados += '''
+                  <h3>{}</h3>
+                  <div>
+                      <table>
+                        <tr>
+                          <td style='padding: 30px'>
+                            <p>Nome Pessoa: {}</p>
+                            <p>Sigla Agencia : {}</p>
+                          </td>
+                        </tr>
+                      </table>
+                  </div>
+               '''.format(Sigla_Agencia,Nome_Pessoa,Sigla_Agencia)
+  return render_template('accordion.html', dados = dados)
 
 
 @app.route('/select1')

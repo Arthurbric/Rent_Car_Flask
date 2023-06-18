@@ -1,52 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pt-br">
 <head>
-     <meta charset="UTF-8">
-     <link rel="shortcut icon" type="x-icon" href="../static/icon.svg.png">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Hind:wght@600&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="../static/login.css">
-     <title>Login</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Oi {{nome}}</title>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ <link rel="stylesheet" href="/resources/demos/style.css">
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <script type="text/javascript">
+ $( function() {
+   $( "#menu" ).menu();
+ } );
+
+ </script>
+ <style>
+ .ui-menu {
+    width:780px;
+     position: absolute;
+     top: 180px;
+     left: 350px;
+     font-size: 20px;
+     background: radial-gradient( #a8dadc,#f1faee);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+     border-radius: 20px;
+     text-align: center;
+     background-color: rgba(29, 53, 87,0.35);
+
+ }
+ a {
+    text-decoration : none;
+ }
+
+body {
+    background: url(../static/cars.jpg);
+    background-size: cover;
+
+}
+ul{
+    background:red;
+    border:5px solid cadetblue;
+      /* background: url(ball.png) fixed no-repeat 90px 10% rgba(0, 83, 83, 0.165); */
+}
+tr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+td{
+    padding-right: 45px;
+    padding-left: 45px;
+}
+
+ </style>
 </head>
+
 <body>
-     <main>
-          <div class="form-box">
-               <div class="form-value">
-                    <form action="/pass" method="get" target="_blank">
-                         <h2>login</h2>
-                              <div class="inputbox">
-                                   <ion-icon name="mail-outline"></ion-icon>
-                                   <input name="user" type="text"  required>
-                                   <label for="">Email</label>
+   <ul id="menu">
+        <li class="ui-state-disabled"><div style="font-size: 30px;">Quais "selects" você deseja {{nome | safe }}?</div></li>
+        <li><div><a href="/select1">Os carros em ordem alfabetica </a></div></li>
+        <li><div><a href="/select2">Os carros em ordem valor </a></div></li>
+        <li><div><a href="/select3">Selec 3 </a></div></li>
+        <li><div><a href="/select4">Selec 4 </a></div></li>
+        <li><div><a href="/select5">Consultas envolvendo a junção de três ou mais relações com ordenação 1</a></div></li>
+        <li><div><a href="/select6">Consultas envolvendo a junção de três ou mais relações com ordenação 2</a></div></li>
+        <li><div><a href="/select7">Consultas envolvendo a junção de três ou mais relações com ordenação </a></div></li>
+        <li><div><a href="/select81">Consultas envolvendo funções de agregação sobre o resultado da junção de pelo menos duas relações 1</a></div></li>
+        <li><div><a href="/select82">Consultas envolvendo funções de agregação sobre o resultado da junção de pelo menos duas relações 2</a></div></li>
+        <li><div><a href="/select82">Consultas envolvendo funções de agregação sobre o resultado da junção de pelo menos duas relações 3 </a></div></li>
+   </ul>
 
-                              </div>
-                              <div class="inputbox">
-                                   <ion-icon name="lock-closed-outline"></ion-icon>
-                                   <input name="senha" type="password" required>
-                                   <label for="password">Password</label>
-                              </div>
-                              <div class="forget">
-                                   <label for="">
-                                        <input type="checkbox" id="smt">
-                                        <label for="smt"> Remember Me</label>
-                                        &nbsp;&nbsp;
-                                        <a href="#">Forget Password</a>
-                                   </label>
-
-                              </div>
-                              <button type="submit">Login</button>
-                              <div class="register">
-                                   <p>Don't have a account ?
-                                        &nbsp;
-                                        <a href="#">Sign Up</a>
-                                   </p>
-                              </div>
-                    </form>
-               </div>
-          </div>
-     </main>
-     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

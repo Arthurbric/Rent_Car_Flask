@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
  <meta charset="utf-8">
+    <link rel="shortcut icon" type="x-icon" href="../static/icon.svg.png">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <title>Oi {{nome}}</title>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -20,9 +21,9 @@
  .ui-menu {
     width:780px;
      position: absolute;
-     top: 70px;
+     top: 100px;
      left: 350px;
-     font-size: 18px;
+     font-size: 15px;
      background: radial-gradient( #a8dadc,#f1faee);
     border: 3px solid rgba(255, 255, 255, 0.5);
      border-radius: 20px;
@@ -59,7 +60,7 @@ td{
 
 <body>
    <ul id="menu">
-        <li class="ui-state-disabled"><div style="font-size: 30px;">Quais "selects" você deseja {{nome | safe }}?</div></li>
+        <li class="ui-state-disabled"><div style="font-size: 26px;">Quais "selects" você deseja {{nome | safe }}?</div></li>
         <li><div><a href="/select_a">Deseja visualizar os modelos e os anos dos automóveis da marca Toyota?</a></div></li>
         <li><div><a href="/select_a2">Deseja visualizar os contatos e siglas das agências que possuem o nome começando com a letra "A"?</a></div></li>
         <li><div><a href="/select_a3">Deseja visualizar todos os nomes e salários dos funcionários cujo salário seja superior a 1000 e ordená-los por salário em ordem decrescente?</a></div></li>
@@ -73,7 +74,10 @@ td{
         <li><div><a href="/select7">Deseja visualizar os nomes das agências, os nomes dos clientes, os modelos dos automóveis alugados, as datas de retirada e os valores das locações, ordenando pelo nome da agência?</a></div></li>
         <li><div><a href="/select81">Deseja visualizar o nome da agência e a quantidade de automóveis disponíveis para locação em cada agência?</a></div></li>
         <li><div><a href="/select82">Deseja visualizar o nome da agência e a média dos salários dos funcionários de cada agência?</a></div></li>
-        <li><div><a href="/select82">Deseja visualizar o nome do cliente, a quantidade de locações feitas por cada cliente e o total gasto em locações?</a></div></li>
+        <li><div><a href="/select83">Deseja visualizar o nome do cliente, a quantidade de locações feitas por cada cliente e o total gasto em locações?</a></div></li>
+        <li><div><a href="/select91">Deseja visualizar a média de idade dos clientes agrupados pelo plano que eles possuem?</a></div></li>
+        <li><div><a href="/select92">Deseja visualizar a quantidade de locações agrupadas por marca de automóvel?</a></div></li>
+        <li><div><a href="/select93">Deseja visualizar o total de vendas agrupado por mês, considerando as locações e os preços das locações?</a></div></li>
    </ul>
 
 </body>

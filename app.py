@@ -117,7 +117,7 @@ ORDER BY salario DESC;
                           </td>
                       </table>
                   </div>
-               '''.format(nome, salario)
+               '''.format(nome, nome,salario)
   return render_template('accordion.html', dados = dados)
 
 @app.route('/select_b')
@@ -225,10 +225,13 @@ def select3():
                             <p>Modelo : {}</p>
                             <p>Marca : {}</p>
                           </td>
+                           <td style='padding: 30px'>
+                             <img src="\static\{}.jpg" width="300px" height="200px">
+                          </td>
                         </tr>
                       </table>
                   </div>
-               '''.format(nome, nome, modelo, Marca )
+               '''.format(nome, nome, modelo, Marca , Marca)
   return render_template('accordion.html', dados = dados)
 @app.route('/select4')
 def select4():
@@ -255,7 +258,7 @@ def select4():
 @app.route('/select5')
 def select5():
  banco = bd.SQL("root", "art88043101", "test_1")
- comando = """SELECT f.nome, a.modelo, ag.Sigla , ag.nome
+ comando = """SELECT f.nome, a.modelo, ag.Sigla , ag.nome,a.marca
 FROM pessoa_fisica f
 JOIN contrata c ON c.fk_Pessoa_Fisica_CPF = f.CPF
 JOIN agencia ag ON c.fk_Agencia_CNPJ = ag.CNPJ
@@ -264,7 +267,7 @@ JOIN automoveis a ON p.fk_Automoveis_chassi = a.chassi
 ORDER BY f.nome ASC;"""
  cs = banco.consultar(comando, [])
  dados = ""
- for (fnome, modelo, Sigla,agnome ) in cs:
+ for (fnome, modelo, Sigla,agnome,marca ) in cs:
      dados += '''
                  <h3>{}</h3>
                  <div>
@@ -275,16 +278,19 @@ ORDER BY f.nome ASC;"""
                            <p>Agenci Nome : {}</p>
                            <p>Sigla : {}</p>
                          </td>
+                         <td style='padding: 30px'>
+                             <img src="\static\{}.jpg" width="300px" height="200px">
+                          </td>
                        </tr>
                      </table>
                  </div>
-              '''.format(modelo,fnome,agnome , Sigla,)
+              '''.format(modelo,fnome,agnome , Sigla,marca)
  return render_template('accordion.html', dados = dados)
 
 @app.route('/select6')
 def select6():
  banco = bd.SQL("root", "art88043101", "test_1")
- comando = """SELECT ag.nome, l.forma_pagamento, SUM(a.valor_diaria) AS valor_total_diaria
+ comando = """SELECT ag.nome, l.forma_pagamento, SUM(a.valor_diaria) AS valor_total_diaria 
 FROM agencia ag
 JOIN possui p ON ag.cnpj = p.fk_agencia_cnpj
 JOIN automoveis a ON p.fk_automoveis_chassi = a.chassi
@@ -305,6 +311,7 @@ ORDER BY ag.nome ASC;"""
                            <p>Forma Pagamento : {}</p>
                            <p>valor Total Diaria : R${}0</p>
                          </td>
+                        
                        </tr>
                      </table>
                  </div>
@@ -314,7 +321,7 @@ ORDER BY ag.nome ASC;"""
 @app.route('/select7')
 def select7():
  banco = bd.SQL("root", "art88043101", "test_1")
- comando = """SELECT ag.nome, f.nome, a.modelo, r.data_retira, l.preco
+ comando = """SELECT ag.nome, f.nome, a.modelo, r.data_retira, l.preco ,a.marca
 FROM agencia ag
 JOIN retirada r ON ag.cnpj = r.fk_agencia_cnpj
 JOIN locacao l ON r.fk_locacao_codigo_locacao = l.codigo_locacao
@@ -325,7 +332,7 @@ JOIN automoveis a ON t.fk_Automoveis_chassi = a.chassi
 ORDER BY ag.nome ASC;"""
  cs = banco.consultar(comando, [])
  dados = ""
- for (agnome, fnome, modelo, data_retira, preco) in cs:
+ for (agnome, fnome, modelo, data_retira, preco,marca) in cs:
      dados += '''
                  <h3>{}</h3>
                  <div>
@@ -337,10 +344,13 @@ ORDER BY ag.nome ASC;"""
                            <p>data_retira: {} </p>
                            <p>Preco: R${}0 </p>
                          </td>
+                         <td style='padding: 30px'>
+                             <img src="\static\{}.jpg" width="300px" height="200px">
+                          </td>
                        </tr>
                      </table>
                  </div>
-              '''.format( modelo,agnome, fnome, data_retira, preco)
+              '''.format( modelo,agnome, fnome, data_retira, preco, marca)
  return render_template('accordion.html', dados = dados)
 
 @app.route('/select81')
@@ -415,14 +425,95 @@ def select83():
                          <td style='padding: 30px'>
                            <p>Nome  : {}</p>
                            <p>Quantidade Locacoes: {}</p>
-                           <p>data_retira: {} </p>
                            <p>Total Gasto: R${}0 </p>
                          </td>
                        </tr>
                      </table>
                  </div>
-              '''.format(Pnome, quantidade_locacoes, total_gasto)
+              '''.format(Pnome,Pnome, quantidade_locacoes, total_gasto)
  return render_template('accordion.html', dados = dados)
 
+@app.route('/select91')
+def select91():
+ banco = bd.SQL("root", "art88043101", "test_1")
+ comando = """
+ SELECT C.Plano, AVG(PF.Idade) AS media_idade 
+ FROM Cliente C LEFT JOIN Pessoa_Fisica PF 
+ ON C.fk_Pessoa_Fisica_CPF = PF.CPF GROUP BY C.Plano;
+ """
+ cs = banco.consultar(comando, [])
+ dados = ""
+ for (Plano, media_idade) in cs:
+     dados += '''
+                 <h3>{}</h3>
+                 <div>
+                     <table>
+                       <tr>
+                         <td style='padding: 30px'>
+                           <p>Plano  : {}</p>
+                           <p>media_idade : {}</p>
+                         </td>
+                       </tr>
+                     </table>
+                 </div>
+              '''.format(Plano, Plano,media_idade)
+ return render_template('accordion.html', dados = dados)
+
+@app.route('/select92')
+def select92():
+ banco = bd.SQL("root", "art88043101", "test_1")
+ comando = """
+ SELECT A.Marca, COUNT(*) AS quantidade_locacoes 
+ FROM Automoveis A INNER JOIN Tem T ON 
+ A.chassi = T.fk_Automoveis_chassi GROUP BY A.Marca;
+ """
+ cs = banco.consultar(comando, [])
+ dados = ""
+ for (Marca, quantidade_locacoes) in cs:
+     dados += '''
+                 <h3>{}</h3>
+                 <div>
+                     <table>
+                       <tr>
+                         <td style='padding: 30px'>
+                           <p>Quantidade Locacoes : {}</p>
+                           <p>Marca : {}</p>
+                         </td>
+                         <td style='padding: 30px'>
+                             <img src="\static\{}.jpg" width="300px" height="200px">
+                          </td>
+                       </tr>
+                     </table>
+                 </div>
+              '''.format(Marca,Marca, quantidade_locacoes,Marca)
+ return render_template('accordion.html', dados = dados)
+
+@app.route('/select93')
+def select93():
+ banco = bd.SQL("root", "art88043101", "test_1")
+ comando = """
+ SELECT EXTRACT(MONTH FROM E.Data_entrega) AS mes,
+  SUM(L.Preco) AS total_vendas FROM Locacao L 
+  LEFT JOIN Entrega E ON L.Codigo_locacao = E.fk_Locacao_Codigo_locacao 
+  WHERE E.Data_entrega IS NOT NULL GROUP BY
+   EXTRACT(MONTH FROM E.Data_entrega) ORDER BY mes ASC;
+ """
+ cs = banco.consultar(comando, [])
+ dados = ""
+ for (mes, total_vendas) in cs:
+     dados += '''
+                 <h3>{}</h3>
+                 <div>
+                     <table>
+                       <tr>
+                         <td style='padding: 30px'>
+                           <p>Mes  : {}</p>
+                           <p>Total Vendas : {}</p>
+                         </td>
+                       </tr>
+                     </table>
+                 </div>
+              '''.format(mes,mes, total_vendas)
+ return render_template('accordion.html', dados = dados)
 
 app.run(debug=True)

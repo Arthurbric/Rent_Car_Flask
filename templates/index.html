@@ -20,9 +20,9 @@
  .ui-menu {
     width:780px;
      position: absolute;
-     top: 180px;
+     top: 70px;
      left: 350px;
-     font-size: 20px;
+     font-size: 18px;
      background: radial-gradient( #a8dadc,#f1faee);
     border: 3px solid rgba(255, 255, 255, 0.5);
      border-radius: 20px;
@@ -60,16 +60,20 @@ td{
 <body>
    <ul id="menu">
         <li class="ui-state-disabled"><div style="font-size: 30px;">Quais "selects" você deseja {{nome | safe }}?</div></li>
-        <li><div><a href="/select1">Os carros em ordem alfabetica </a></div></li>
-        <li><div><a href="/select2">Os carros em ordem valor </a></div></li>
-        <li><div><a href="/select3">Selec 3 </a></div></li>
-        <li><div><a href="/select4">Selec 4 </a></div></li>
-        <li><div><a href="/select5">Consultas envolvendo a junção de três ou mais relações com ordenação 1</a></div></li>
-        <li><div><a href="/select6">Consultas envolvendo a junção de três ou mais relações com ordenação 2</a></div></li>
-        <li><div><a href="/select7">Consultas envolvendo a junção de três ou mais relações com ordenação </a></div></li>
-        <li><div><a href="/select81">Consultas envolvendo funções de agregação sobre o resultado da junção de pelo menos duas relações 1</a></div></li>
-        <li><div><a href="/select82">Consultas envolvendo funções de agregação sobre o resultado da junção de pelo menos duas relações 2</a></div></li>
-        <li><div><a href="/select82">Consultas envolvendo funções de agregação sobre o resultado da junção de pelo menos duas relações 3 </a></div></li>
+        <li><div><a href="/select_a">Deseja visualizar os modelos e os anos dos automóveis da marca Toyota?</a></div></li>
+        <li><div><a href="/select_a2">Deseja visualizar os contatos e siglas das agências que possuem o nome começando com a letra "A"?</a></div></li>
+        <li><div><a href="/select_a3">Deseja visualizar todos os nomes e salários dos funcionários cujo salário seja superior a 1000 e ordená-los por salário em ordem decrescente?</a></div></li>
+        <li><div><a href="/select_b">Deseja visualizar os nomes das pessoas e a sigla responsável pela alocação do automóvel?</a></div></li>
+        <li><div><a href="/select1">Os carros em ordem alfabética.</a></div></li>
+        <li><div><a href="/select2">Os carros em ordem de valor.</a></div></li>
+        <li><div><a href="/select3">Deseja visualizar o modelo, a marca e o nome da agência em que o carro está disponível, para saber se a agência está com o modelo desejado pelo cliente?</a></div></li>
+        <li><div><a href="/select4">Deseja visualizar informações sobre os clientes, agências de seguro e valores dos seguros associados às locações?</a></div></li>
+        <li><div><a href="/select5">Deseja visualizar os nomes dos clientes, os modelos dos automóveis alugados, as datas de retirada e os nomes das agências onde foram retirados, ordenando pelos nomes dos clientes?</a></div></li>
+        <li><div><a href="/select6">Deseja visualizar os nomes das agências, a forma de pagamento e a soma do valor da diária, ordenando pelo nome da agência?</a></div></li>
+        <li><div><a href="/select7">Deseja visualizar os nomes das agências, os nomes dos clientes, os modelos dos automóveis alugados, as datas de retirada e os valores das locações, ordenando pelo nome da agência?</a></div></li>
+        <li><div><a href="/select81">Deseja visualizar o nome da agência e a quantidade de automóveis disponíveis para locação em cada agência?</a></div></li>
+        <li><div><a href="/select82">Deseja visualizar o nome da agência e a média dos salários dos funcionários de cada agência?</a></div></li>
+        <li><div><a href="/select82">Deseja visualizar o nome do cliente, a quantidade de locações feitas por cada cliente e o total gasto em locações?</a></div></li>
    </ul>
 
 </body>

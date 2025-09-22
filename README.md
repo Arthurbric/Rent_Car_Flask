@@ -30,7 +30,7 @@
    ```bash
    git clone https://github.com/your-username/EasyRent_QuickCar.git
    cd EasyRent_QuickCar
-````
+```
 
 2. Install required Python packages:
 
